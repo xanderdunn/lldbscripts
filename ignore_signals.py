@@ -1,6 +1,6 @@
 import lldb
 import threading
-from datetime import date
+from datetime import datetime
 
 class ProcessEventListener(threading.Thread):
     def __init__(self, debugger):
@@ -12,8 +12,8 @@ class ProcessEventListener(threading.Thread):
     
     def _suppress_signals(self, process):
         signals = process.GetUnixSignals()
-        log_file = open("signals.log", "w")
-        log_file.write("{}: ignoring SIGPIPE in LLDB process".format(date.today()))
+        log_file = open("signals.log", "a")
+        log_file.write("{}: ignoring SIGPIPE in LLDB process".format(datetime.now()))
         log_file.close()
         signals.SetShouldStop(13, False) # Ignore SIGPIPE
 
