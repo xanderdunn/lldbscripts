@@ -12,7 +12,7 @@ class ProcessEventListener(threading.Thread):
     
     def _suppress_signals(self, process):
         signals = process.GetUnixSignals()
-        lo_file = open("signals.log", "w")
+        log_file = open("signals.log", "w")
         log_file.write("{}: ignoring SIGPIPE in LLDB process".format(date.today()))
         log_file.close()
         signals.SetShouldStop(13, False) # Ignore SIGPIPE
