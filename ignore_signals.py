@@ -11,7 +11,7 @@ class ProcessEventListener(threading.Thread):
     
     def _suppress_signals(self, process):
         signals = process.GetUnixSignals()
-        signals.SetShouldStop(11, False)
+        signals.SetShouldStop(13, False) # Ignore SIGPIPE
 
     def run(self):
         while True:
